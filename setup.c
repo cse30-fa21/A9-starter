@@ -11,19 +11,16 @@ static char encryptname[PATH_MAX];
 static int safetounlink = 0;
 
 void
-encryptdelete(void)
-{
-	if ((safetounlink == 0) || (encryptname[0] == '\0'))
-		return;
-	(void)unlink(encryptname);
+encryptdelete(void) {
+	if ((safetounlink == 0) || (encryptname[0] == '\0')) return;
+	(void) unlink(encryptname);
 	safetounlink = 0;
 	encryptname[0] = '\0';
 	return;
 }
 
 int
-setup(int argc, char *argv[], int *mode, FILE **book, FILE **input, FILE **output)
-{
+setup(int argc, char *argv[], int *mode, FILE **book, FILE **input, FILE **output) {
 	int opt;
 	int error = EXIT_OK;
 	int dflag = 0;
@@ -74,9 +71,8 @@ setup(int argc, char *argv[], int *mode, FILE **book, FILE **input, FILE **outpu
 	}
 	if ((FPencrypt = fopen(argv[optind], openmode)) == NULL) {
 		fprintf(stderr, "%s: Unable to open encryption_file %s\n", argv[0], argv[optind]);
-		(void)fclose(*book);	
-		if (eflag == 1)
-			(void)unlink(argv[optind]);
+		(void) fclose(*book);
+		if (eflag == 1) (void) unlink(argv[optind]);
 		return EXIT_FAIL;
 	}
 	if (eflag == 1) {
@@ -91,7 +87,6 @@ setup(int argc, char *argv[], int *mode, FILE **book, FILE **input, FILE **outpu
 			safetounlink = 0;
 			encryptname[0] = '\0';
 		}
-			
 	} else {
 		/* decrypting a file: read from the encrypted file and write to stdou */
 		*input = FPencrypt;
