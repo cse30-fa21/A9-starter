@@ -30,10 +30,6 @@ encrypt:
 	pop {fp, lr}                 // remove frame and restore registers
 	bx lr                        // return to caller
 
-	// function epilogue - DO NOT EDIT BELOW
-	sub sp, fp, FP_OFFSET        // restore stack frame top
-	pop {fp, lr}                 // remove frame and restore registers
-	bx lr                        // return to caller
 	// function footer
 	.size encrypt, (. - encrypt) // set size for function
 
